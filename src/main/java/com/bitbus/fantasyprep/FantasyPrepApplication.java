@@ -7,8 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import com.bitbus.fantasyprep.domain.team.Team;
-import com.bitbus.fantasyprep.domain.team.TeamRepository;
+import com.bitbus.fantasyprep.team.Team;
+import com.bitbus.fantasyprep.team.TeamRepository;
 
 @SpringBootApplication
 public class FantasyPrepApplication {

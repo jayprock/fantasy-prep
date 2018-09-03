@@ -14,12 +14,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import com.bitbus.fantasyprep.domain.team.Team;
-import com.bitbus.fantasyprep.domain.team.TeamService;
 import com.bitbus.fantasyprep.player.Player;
 import com.bitbus.fantasyprep.player.PlayerProjection;
 import com.bitbus.fantasyprep.player.PlayerService;
 import com.bitbus.fantasyprep.player.Position;
+import com.bitbus.fantasyprep.team.Team;
+import com.bitbus.fantasyprep.team.TeamService;
 
 @SpringBootApplication
 public class PlayerProjectionsLoader {

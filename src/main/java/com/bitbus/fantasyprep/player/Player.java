@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import com.bitbus.fantasyprep.domain.team.Team;
+import com.bitbus.fantasyprep.team.Team;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.bitbus.fantasyprep.domain.team;
+package com.bitbus.fantasyprep.team;
 
 public enum TeamAbbreviation {
 

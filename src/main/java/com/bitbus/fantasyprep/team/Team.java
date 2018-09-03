@@ -1,4 +1,4 @@
-package com.bitbus.fantasyprep.domain.team;
+package com.bitbus.fantasyprep.team;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
