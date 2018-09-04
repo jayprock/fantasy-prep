@@ -21,7 +21,10 @@ import com.bitbus.fantasyprep.player.Position;
 import com.bitbus.fantasyprep.team.Team;
 import com.bitbus.fantasyprep.team.TeamService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @SpringBootApplication
+@Slf4j
 public class PlayerProjectionsLoader {
 
     private static final String PROJECTIONS_CSV = "C:\\Users\\Lisa\\Desktop\\projections.csv";
@@ -39,9 +42,10 @@ public class PlayerProjectionsLoader {
         loader.load();
     }
 
-    private void load() throws IOException {
+    public void load() throws IOException {
         List<Team> teams = teamService.findAll();
-        System.out.println(teams);
+        log.info("Loaded {} teams", teams.size());
+        log.info("About to parse the player projection CSV");
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(PROJECTIONS_CSV));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.EXCEL//
                         .withHeader("Rank", "Name", "Team", "Position", "Bye", "Games", "Points", "AV", "PassingYards",
@@ -92,7 +96,7 @@ public class PlayerProjectionsLoader {
                 String receivingTds = csvRecord.get(15);
                 projection.setReceivingTds(Double.valueOf(receivingTds));
 
-                if (player.getPosition() == Position.K || player.getPosition() == Position.DEF) {
+                if (player.getPosition() == Position.K || player.getPosition() == Position.DST) {
                     continue;
                 }
 
@@ -100,6 +104,7 @@ public class PlayerProjectionsLoader {
 
             }
         }
+        log.info("Done parsing player projections");
     }
 
 }
