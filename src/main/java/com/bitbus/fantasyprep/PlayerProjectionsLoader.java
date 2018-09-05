@@ -82,7 +82,7 @@ public class PlayerProjectionsLoader {
                 projection.setInterceptions(Double.valueOf(interceptions));
 
                 String rushingYards = csvRecord.get(11);
-                projection.setRushingTds(Double.valueOf(rushingYards));
+                projection.setRushingYards(Double.valueOf(rushingYards));
 
                 String rushingTds = csvRecord.get(12);
                 projection.setRushingTds(Double.valueOf(rushingTds));

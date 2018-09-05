@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DefaultAuctionValuesLoader {
 
+    public static final String AUCTION_ID = "PFF-Custom";
     private static final String AUCTION_CSV = "C:\\Users\\Lisa\\Desktop\\auction.csv";
 
     @Autowired
@@ -51,6 +52,7 @@ public class DefaultAuctionValuesLoader {
     public void load() throws IOException {
 
         Auction auction = new Auction();
+        auction.setAuctionId(AUCTION_ID);
         auction.setDescription("Auction values per Pro Football Focus");
         auction.setCreationTime(LocalDateTime.now());
 
