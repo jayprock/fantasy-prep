@@ -1,10 +1,13 @@
 package com.bitbus.fantasyprep.player;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.EqualsAndHashCode;
@@ -15,8 +18,8 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"player"})
-@ToString(exclude = {"player"})
+@EqualsAndHashCode(exclude = {"player", "pointProjections"})
+@ToString(exclude = {"player", "pointProjections"})
 public class PlayerProjection {
 
     @Id
@@ -42,5 +45,8 @@ public class PlayerProjection {
     private double receivingYards;
 
     private double receivingTds;
+
+    @OneToMany(mappedBy = "projection")
+    private List<PlayerProjectedPoints> pointProjections;
 
 }
