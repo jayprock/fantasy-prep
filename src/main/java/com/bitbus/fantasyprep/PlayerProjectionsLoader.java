@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PlayerProjectionsLoader {
 
-    private static final String PROJECTIONS_CSV = "C:\\Users\\Lisa\\Desktop\\projections.csv";
+    private static final String PROJECTIONS_CSV = "C:\\Users\\Lisa\\Desktop\\projections-joe.csv";
 
     @Autowired
     private TeamService teamService;
@@ -100,7 +100,7 @@ public class PlayerProjectionsLoader {
                     continue;
                 }
 
-                playerService.create(player);
+                playerService.save(player);
 
             }
         }

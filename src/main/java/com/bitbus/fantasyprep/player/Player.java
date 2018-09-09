@@ -1,5 +1,7 @@
 package com.bitbus.fantasyprep.player;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,8 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
+import com.bitbus.fantasyprep.auction.PlayerAuction;
 import com.bitbus.fantasyprep.team.Team;
 
 import lombok.EqualsAndHashCode;
@@ -21,8 +26,8 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"team", "projection"})
-@ToString(exclude = {"team", "projection"})
+@EqualsAndHashCode(exclude = {"team", "projection", "playerAuctions"})
+@ToString(exclude = {"team", "projection", "playerAuctions"})
 public class Player {
 
     @Id
@@ -40,5 +45,18 @@ public class Player {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "player")
     private PlayerProjection projection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
+    private List<PlayerAuction> playerAuctions;
+
+    @Transient
+    public double getProjectedPoints() {
+        return projection.getPointProjections().get(0).getProjectedPoints();
+    }
+
+    @Transient
+    public double getAuctionCost() {
+        return playerAuctions.get(0).getAuctionValue();
+    }
 
 }

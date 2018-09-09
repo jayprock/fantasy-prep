@@ -1,5 +1,7 @@
 package com.bitbus.fantasyprep.auction;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,5 +13,9 @@ public class AuctionService {
 
     public Auction create(Auction auction) {
         return auctionRepo.save(auction);
+    }
+
+    public Optional<Auction> findById(String auctionId) {
+        return auctionRepo.findById(auctionId);
     }
 }

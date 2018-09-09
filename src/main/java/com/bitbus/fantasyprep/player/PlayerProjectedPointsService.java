@@ -44,4 +44,12 @@ public class PlayerProjectedPointsService {
         }
 
     }
+
+    public List<PlayerProjectedPoints> findByLeague(League league) {
+        LeagueSettings leagueSettings = leagueSettingsService.find(league);
+        List<PlayerProjectedPoints> playerPointProjections =
+                playerProjectedPointsRepo.findByLeagueSettings(leagueSettings);
+        System.out.println("Found " + playerPointProjections.size());
+        return playerPointProjections;
+    }
 }

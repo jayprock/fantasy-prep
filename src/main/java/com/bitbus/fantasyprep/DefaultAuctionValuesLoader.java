@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -31,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DefaultAuctionValuesLoader {
 
     public static final String AUCTION_ID = "PFF-Custom";
-    private static final String AUCTION_CSV = "C:\\Users\\Lisa\\Desktop\\auction.csv";
+    private static final String AUCTION_CSV = "C:\\Users\\Lisa\\Desktop\\auction-yahoo.csv";
 
     @Autowired
     private PlayerService playerService;
@@ -80,14 +81,16 @@ public class DefaultAuctionValuesLoader {
                 if (playerPosition == Position.K || playerPosition == Position.DST) {
                     continue;
                 }
-                Player player = players.stream() //
+                Optional<Player> player = players.stream() //
                         .filter(playerPredicate -> playerPredicate.getPlayerName().equals(playerName)) //
                         .filter(playerPredicate -> playerPredicate.getTeam().getAbbreviation() == playerTeam) //
-                        .findFirst() //
-                        .get();
-                playerAuction.setPlayer(player);
+                        .findFirst();
+                if (!player.isPresent()) {
+                    continue;
+                }
+                playerAuction.setPlayer(player.get());
                 playerAuction.setAuction(auction);
-                playerAuction.setAuctionValue(Double.valueOf(csvRecord.get(8)));
+                playerAuction.setAuctionValue(Math.max(Double.valueOf(csvRecord.get(8)), 1));
                 playerAuctionValues.add(playerAuction);
             }
         }
